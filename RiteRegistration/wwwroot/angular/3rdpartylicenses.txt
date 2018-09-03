@@ -272,6 +272,10 @@ END OF TERMS AND CONDITIONS
 MIT
 MIT
 
+@angular/router@6.1.6
+MIT
+MIT
+
 @angular/forms@6.1.6
 MIT
 MIT
