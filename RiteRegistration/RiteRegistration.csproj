@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-RiteRegistration-47865207-38F0-49FE-AEB8-3AA1BA5C83E5</UserSecretsId>
+    <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+
   </PropertyGroup>
 
   <ItemGroup>

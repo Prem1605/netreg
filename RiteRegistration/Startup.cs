@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using RiteRegistration.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace RiteRegistration
 {
@@ -23,6 +24,7 @@ namespace RiteRegistration
         }
 
         public IConfiguration Configuration { get; }
+        public const string AngularRoutePropertyName = "angularRoute";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -63,8 +65,21 @@ namespace RiteRegistration
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            
             app.UseMvc();
+            // app.UseMvc(routes =>
+            // {
+            //     routes.MapRoute(
+            //         name: "default",
+            //         template: "{controller=Home}/{action=Index}/{id?}");
+
+            //     routes.MapRoute(
+            //         name: "root-angular",
+            //         template: $"app/{{*{AngularRoutePropertyName}}}",
+            //         defaults: new { controller = "Home", action = "Index" });
+            // });
+
         }
     }
+
 }

@@ -1,9 +1,28 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string baseUrl = System.Text.RegularExpressions.Regex.Replace(
+    Context.Request.Path.Value,
+    $"app/?{ViewContext.RouteData.Values[Startup.AngularRoutePropertyName]}",
+    "");
+    if(baseUrl.StartsWith("/"))
+    {
+        baseUrl = baseUrl.Substring(1);
+	}
+
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RiteRegistration</title>
+    <title>Rite Registration</title>
+
+
+    <link rel="stylesheet" href="~/angular/styles.css" />
+	<script type="text/javascript" src="~/angular/runtime.js" defer></script>
+	<script type="text/javascript" src="~/angular/polyfills.js" defer></script>
+	<script type="text/javascript" src="~/angular/main.js" defer></script>
+
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -17,6 +36,8 @@
     </environment>
 </head>
 <body>
+    <base href="~/@baseUrl">    
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
