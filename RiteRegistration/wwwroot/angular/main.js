@@ -54948,15 +54948,15 @@ var ProgramService = /** @class */ (function () {
         this.programsUrl = 'https://localhost:5011/api/programs';
     }
     ProgramService.prototype.getPrograms = function () {
-        var apiResult = this.http.get(this.programsUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError('getHeroes', [])));
-        // send the message _after_ fetching the programs
-        this.messageService.add('ProgramService: fetched programs successfully');
+        var _this = this;
+        var apiResult = this.http.get(this.programsUrl).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (programs) { return _this.log('fetched programs ' + programs.length); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError('getPrograms', [])));
         return apiResult;
     };
     ProgramService.prototype.getProgram = function (id) {
-        var apiResult = this.http.get(this.programsUrl + '/' + id);
-        //Note the backticks ( ` ) that define a JavaScript template literal for embedding the id.
-        this.messageService.add("ProgramService: fetched program id=" + id);
+        var _this = this;
+        var url = this.programsUrl + "/" + id;
+        var apiResult = this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (_) { return _this.log("fetched program id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError("getProgram id=" + id)));
         return apiResult;
     };
     /**
@@ -54979,7 +54979,7 @@ var ProgramService = /** @class */ (function () {
     };
     /** Log a HeroService message with the MessageService */
     ProgramService.prototype.log = function (message) {
-        this.messageService.add("HeroService: " + message);
+        this.messageService.add("ProgramService: " + message);
     };
     ProgramService.ngInjectableDef = _angular_core__WEBPACK_IMPORTED_MODULE_4__["defineInjectable"]({ factory: function ProgramService_Factory() { return new ProgramService(_angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"](_app_message_service__WEBPACK_IMPORTED_MODULE_3__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_4__["inject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); }, token: ProgramService, providedIn: "root" });
     return ProgramService;

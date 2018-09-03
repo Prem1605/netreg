@@ -19,19 +19,22 @@ export class ProgramService {
 
   getPrograms(): Observable<Program[]> {
     var apiResult = this.http.get<Program[]>(this.programsUrl).pipe(
-      catchError(this.handleError('getHeroes', []))
+      tap(programs => this.log('fetched programs ' + programs.length)),
+      catchError(this.handleError('getPrograms', []))
     );
 
-    // send the message _after_ fetching the programs
-    this.messageService.add('ProgramService: fetched programs successfully');
     return apiResult;
   }
 
   getProgram(id: number): Observable<Program> {
-    var apiResult = this.http.get<Program>(this.programsUrl + '/' + id);
+    const url = `${this.programsUrl}/${id}`;
 
-    //Note the backticks ( ` ) that define a JavaScript template literal for embedding the id.
-    this.messageService.add(`ProgramService: fetched program id=${id}`);
+    var apiResult = this.http.get<Program>(url)
+      .pipe(
+        tap(_ => this.log(`fetched program id=${id}`)),
+        catchError(this.handleError<Program>(`getProgram id=${id}`))
+      );
+
     return apiResult;
   }
 
@@ -57,7 +60,7 @@ export class ProgramService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`ProgramService: ${message}`);
   }
 
 }
