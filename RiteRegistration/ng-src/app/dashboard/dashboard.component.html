@@ -1,0 +1,9 @@
+<h3>Program Dashboard</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let program of programs" class="col-1-4"
+    routerLink="/app/detail/{{program.id}}">
+    <div class="module program">
+      <h4>{{program.name}}</h4>
+    </div>
+  </a>
+</div>

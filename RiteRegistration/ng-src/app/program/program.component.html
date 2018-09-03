@@ -1,0 +1,8 @@
+<h2>Programs</h2>
+<ul class="programs">
+  <li *ngFor="let p of programs">
+      <a routerLink="/app/detail/{{p.id}}">
+        <span class="badge">{{p.id}}</span> {{p.name}}
+      </a>
+  </li>
+</ul>
