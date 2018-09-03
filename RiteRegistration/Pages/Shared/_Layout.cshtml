@@ -1,7 +1,8 @@
 ﻿@{
+    var angularRouteVal = ViewContext.RouteData.Values[Startup.AngularRoutePropertyName];
     string baseUrl = System.Text.RegularExpressions.Regex.Replace(
     Context.Request.Path.Value,
-    $"app/?{ViewContext.RouteData.Values[Startup.AngularRoutePropertyName]}",
+    $"app/?{ViewContext.RouteData.Values["handler"]}",
     "");
     if(baseUrl.StartsWith("/"))
     {

@@ -7,8 +7,7 @@ import { ProgramService } from '@app/program.service';
   templateUrl: './program.component.html',
   styleUrls: ['./program.component.css']
 })
-export class ProgramComponent implements OnInit {
-  selectedProgram: Program;
+export class ProgramComponent implements OnInit {  
   programs: Program[];
 
   constructor(private programService: ProgramService) { }
@@ -19,10 +18,6 @@ export class ProgramComponent implements OnInit {
 
   getPrograms(): void {
     this.programService.getPrograms().subscribe(p => this.programs = p);
-  }
-
-  onSelect(program: Program): void {
-    this.selectedProgram = program;
   }
 
 }

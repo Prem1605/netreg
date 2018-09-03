@@ -1,8 +1,8 @@
 <h2>Programs</h2>
 <ul class="programs">
-  <li *ngFor="let p of programs" (click)="onSelect(p)" [class.selected]="p === selectedProgram">
-    <span class="badge">{{p.id}}</span> {{p.name}}
+  <li *ngFor="let p of programs">
+      <a routerLink="/app/detail/{{p.id}}">
+        <span class="badge">{{p.id}}</span> {{p.name}}
+      </a>
   </li>
 </ul>
-
-<app-program-detail [program]="selectedProgram"></app-program-detail>

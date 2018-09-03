@@ -8,7 +8,7 @@ import { MessageService } from '@app/message.service';
   providedIn: 'root'
 })
 export class ProgramService {
-
+  
   constructor(private messageService: MessageService) { }
 
   getPrograms(): Observable<Program[]> {
@@ -16,4 +16,11 @@ export class ProgramService {
     this.messageService.add('ProgramService: fetched programs');
     return of(Programs);
   }
+
+  getProgram(id: number): Observable<Program> {
+    //Note the backticks ( ` ) that define a JavaScript template literal for embedding the id.
+    this.messageService.add(`ProgramService: fetched program id=${id}`);
+    return of(Programs.find(p => p.id === id));
+  }
+
 }

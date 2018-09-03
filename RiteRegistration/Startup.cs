@@ -66,18 +66,7 @@ namespace RiteRegistration
 
             app.UseAuthentication();
             
-            app.UseMvc();
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "default",
-            //         template: "{controller=Home}/{action=Index}/{id?}");
-
-            //     routes.MapRoute(
-            //         name: "root-angular",
-            //         template: $"app/{{*{AngularRoutePropertyName}}}",
-            //         defaults: new { controller = "Home", action = "Index" });
-            // });
+            app.UseMvc();           
 
         }
     }
